@@ -109,7 +109,7 @@ let getCoordColor (x : int, y : int) (petri: Petrischale) : Color =
         | Lebt -> yellow
         | Tot -> black
 
-let mutable petri = init_Petri width height (fun _ _ -> rnd.Next() % 2 |> function | 1 -> Lebt | _ -> Tot)
+let petri = init_Petri width height (fun _ _ -> rnd.Next() % 2 |> function | 1 -> Lebt | _ -> Tot)
 
 let showSet () =
     let canvas: Browser.Types.HTMLCanvasElement = unbox window.document.getElementById "myCanvas"
@@ -117,8 +117,8 @@ let showSet () =
 
     let img = ctx.createImageData(float width, float height)
 
-    let rec redraw () =
-        petri <- schritt petri
+    let rec redraw petri () =
+        let petri = schritt petri
         for y = 0 to height-1 do
             for x = 0 to width-1 do
                 let index = (x + y * width) * 4
@@ -128,8 +128,8 @@ let showSet () =
                 img.data.[index+2] <- uint8 color.b
                 img.data.[index+3] <- uint8 color.a
         ctx.putImageData(img, 0., 0.)
-        JS.setTimeout redraw 0 |> ignore
-    redraw ()
+        JS.setTimeout (redraw petri) 0 |> ignore
+    redraw petri ()
 
 showSet ()
 
