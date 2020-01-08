@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <title>Fable</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="fable.ico" />
+  <style>
+    canvas {
+      image-rendering: optimizeSpeed;             /* Older versions of FF          */
+  image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
+  image-rendering: -webkit-optimize-contrast; /* Safari                        */
+  image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
+  image-rendering: pixelated;                 /* Awesome future-browsers       */
+  -ms-interpolation-mode: nearest-neighbor;
+    }
+  </style>
+</head>
+<body>
+    <canvas id="myCanvas" align="center" width="256" height="256" style="width: 100%;"></canvas>
+    <script src="bundle.js"></script>
+</body>
+</html>
